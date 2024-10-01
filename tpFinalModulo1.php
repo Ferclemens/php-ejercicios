@@ -100,23 +100,28 @@ function verificarPrimos($inicio, $fin){
     $primos = [];
     $primosPares = [];
     $primosImpares = [];
-    //verificamos usando la función verificarNumero() si cada número en la iteración es primo, primo par o primo impar y guardamos en el
-    //array correspondiente 
-    for ($i=$inicio; $i <= $fin; $i++) { 
-        $resultado = verificarNumero($i);
-        if($resultado[0] == true && $resultado[1] == "par"){
-            array_push($primos, $i);
-            array_push($primosPares, $i);
-        } elseif ($resultado[0] == true && $resultado[1] == "impar"){
-            array_push($primos, $i);
-            array_push($primosImpares, $i);
-        }        
+    //verificamos que los valores dados sean mayores a 1
+    if($inicio > 1 && $fin > 1){   
+        //verificamos usando la función verificarNumero() si cada número en la iteración es primo, primo par o primo impar y guardamos en el
+        //array correspondiente 
+        for ($i=$inicio; $i <= $fin; $i++) { 
+            $resultado = verificarNumero($i);
+            if($resultado[0] == true && $resultado[1] == "par"){
+                array_push($primos, $i);
+                array_push($primosPares, $i);
+            } elseif ($resultado[0] == true && $resultado[1] == "impar"){
+                array_push($primos, $i);
+                array_push($primosImpares, $i);
+            }        
+        }
+        //imprimimos los resultados
+        echo "Números primos encontrados entre $inicio y $fin = " .implode(", ", $primos);
+        echo "<br>Cantidad de números primos = " .count($primos);
+        echo "<br>Cantidad de números primos pares = " .count($primosPares);
+        echo "<br>Cantidad de números primos impares = " .count($primosImpares);
+    } else {
+        echo "La función debe recibir valores mayores a 1";
     }
-    //imprimimos los resultados
-    echo "Números primos encontrados entre $inicio y $fin = " .implode(", ", $primos);
-    echo "<br>Cantidad de números primos = " .count($primos);
-    echo "<br>Cantidad de números primos pares = " .count($primosPares);
-    echo "<br>Cantidad de números primos impares = " .count($primosImpares);
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------
 
